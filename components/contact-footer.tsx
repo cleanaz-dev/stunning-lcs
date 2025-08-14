@@ -10,10 +10,14 @@ import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Phone, Mail, MapPin, Clock, Star } from "lucide-react"
 import { FaInstagram, FaFacebook } from "react-icons/fa";
+const emailSchema = z.string().refine(
+  (val) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val),
+  { message: "Please enter a valid email address" }
+);
 
 const contactSchema = z.object({
   name: z.string().min(1, "Name is required"),
-  email: z.string().email("Please enter a valid email address"),
+  email: emailSchema,
   phone: z.string().min(1, "Phone number is required"),
   serviceInterest: z.string().min(1, "Please select a service"),
   message: z.string().optional(),
