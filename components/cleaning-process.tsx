@@ -2,6 +2,7 @@
 
 import { FileText, Calendar, AirVentIcon as Vacuum, CreditCard } from "lucide-react"
 import { motion } from "framer-motion"
+import Image from "next/image"
 
 export default function CleaningProcess() {
   const steps = [
@@ -94,10 +95,12 @@ export default function CleaningProcess() {
           {/* Staff Image and Sales Text */}
           <div className="text-center lg:text-left">
             <div className="relative inline-block mb-6">
-              <img
+              <Image
                 src="/smiling-cleaner.png"
                 alt="Professional cleaning staff member"
                 className="w-80 h-96 object-cover rounded-2xl border-4 border-white shadow-2xl"
+                width={300}
+                height={300}
               />
               <div className="absolute -bottom-4 -right-4 w-20 h-20 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full flex items-center justify-center shadow-lg">
                 <Vacuum className="w-10 h-10 text-white" />

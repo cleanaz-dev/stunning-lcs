@@ -5,6 +5,7 @@ import { Phone } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Navigation from "./navigation";
+import Image from "next/image";
 
 const heroImages = [
   "/modern-office-cleaning.png",
@@ -47,10 +48,12 @@ export function HeroSection() {
               scale: { duration: 7, ease: "linear" },
             }}
           >
-            <img
+            <Image
               src={heroImages[currentImageIndex] || "/placeholder.svg"}
               alt="Professional cleaning services"
               className="w-full h-full object-cover"
+              width={1000}
+              height={1000}
             />
           </motion.div>
         </AnimatePresence>

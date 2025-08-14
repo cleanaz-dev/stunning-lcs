@@ -2,6 +2,7 @@
 
 import { Sparkles, Zap, Clock, Award } from "lucide-react"
 import { motion } from "framer-motion"
+import Image from "next/image"
 
 export default function OurCleaningServices() {
   const features = [
@@ -30,16 +31,21 @@ export default function OurCleaningServices() {
   return (
     <section className="relative py-20 overflow-hidden">
       {/* Background Image with Gradient Overlay */}
-      <motion.div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage: `url('/cleaning-supplies.png')`,
-        }}
-        initial={{ scale: 1.1, opacity: 0 }}
-        whileInView={{ scale: 1, opacity: 1 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 1.2, ease: "easeOut" }}
-      />
+  <motion.div
+  className="absolute inset-0"
+  initial={{ scale: 1.1, opacity: 0 }}
+  whileInView={{ scale: 1, opacity: 1 }}
+  viewport={{ once: true, amount: 0.3 }}
+  transition={{ duration: 1.2, ease: "easeOut" }}
+>
+  <Image
+    src="/cleaning-supplies.png"
+    alt="Cleaning Supplies"
+    fill // makes it cover parent
+    style={{ objectFit: "cover", objectPosition: "center" }}
+    priority // optional: if you want it to load immediately
+  />
+</motion.div>
       <div className="absolute inset-0 bg-gradient-to-r from-blue-900/80 via-blue-800/50 to-transparent" />
 
       <div className="relative max-w-6xl mx-auto px-4">

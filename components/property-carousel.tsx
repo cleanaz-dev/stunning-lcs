@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { ChevronLeft, ChevronRight, MapPin } from "lucide-react"
+import Image from "next/image"
 
 export function PropertyCarousel() {
   const [currentSlide, setCurrentSlide] = useState(0)
@@ -68,10 +69,12 @@ export function PropertyCarousel() {
             >
               {properties.map((property, index) => (
                 <div key={index} className="w-full flex-shrink-0 relative">
-                  <img
+                  <Image
                     src={property.image || "/placeholder.svg"}
                     alt={property.title}
                     className="w-full h-96 object-cover"
+                    width={1000}
+                    height={600}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
