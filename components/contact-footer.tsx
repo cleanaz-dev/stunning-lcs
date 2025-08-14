@@ -1,19 +1,26 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import { z } from "zod"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Phone, Mail, MapPin, Clock, Star } from "lucide-react"
+import { useState } from "react";
+import { z } from "zod";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Phone, Mail, MapPin, Clock, Star } from "lucide-react";
 import { FaInstagram, FaFacebook } from "react-icons/fa";
-const emailSchema = z.string().refine(
-  (val) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val),
-  { message: "Please enter a valid email address" }
-);
+const emailSchema = z
+  .string()
+  .refine((val) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val), {
+    message: "Please enter a valid email address",
+  });
 
 const contactSchema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -21,7 +28,7 @@ const contactSchema = z.object({
   phone: z.string().min(1, "Phone number is required"),
   serviceInterest: z.string().min(1, "Please select a service"),
   message: z.string().optional(),
-})
+});
 
 export function ContactFooter() {
   const [formData, setFormData] = useState({
@@ -30,61 +37,60 @@ export function ContactFooter() {
     phone: "",
     message: "",
     serviceInterest: "",
-  })
+  });
 
-  const [errors, setErrors] = useState<Record<string, string>>({})
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  setIsSubmitting(true);
-  setErrors({});
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setErrors({});
 
-  try {
-    const validatedData = contactSchema.parse(formData);
-    console.log("Contact form submitted:", validatedData);
+    try {
+      const validatedData = contactSchema.parse(formData);
+      console.log("Contact form submitted:", validatedData);
 
-    // Reset form on success
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      message: "",
-      serviceInterest: "",
-    });
-
-    // Show success message
-    alert("Thank you! Your message has been sent successfully.");
-  } catch (error) {
-    if (error instanceof z.ZodError) {
-      const fieldErrors: Record<string, string> = {};
-
-      error.issues.forEach((issue) => {
-        if (issue.path[0]) {
-          fieldErrors[issue.path[0] as string] = issue.message;
-        }
+      // Reset form on success
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        message: "",
+        serviceInterest: "",
       });
 
-      setErrors(fieldErrors);
-    }
-  } finally {
-    setIsSubmitting(false);
-  }
-};
+      // Show success message
+      alert("Thank you! Your message has been sent successfully.");
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        const fieldErrors: Record<string, string> = {};
 
+        error.issues.forEach((issue) => {
+          if (issue.path[0]) {
+            fieldErrors[issue.path[0] as string] = issue.message;
+          }
+        });
+
+        setErrors(fieldErrors);
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <footer className="relative bg-gray-900 text-white overflow-hidden">
       <div className="absolute inset-0">
         <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-sky-500/20 to-teal-500/20 rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 right-0 w-80 h-80 bg-gradient-to-tl from-blue-500/20 to-purple-500/20 rounded-full blur-3xl"></div>
-        
+
         {/* Logo Background Overlay */}
-        <div 
+        <div
           className="absolute inset-0 bg-center bg-no-repeat bg-contain opacity-[0.03]"
           style={{
             backgroundImage: `url('/logo-lite.png')`,
-            backgroundSize: '1000px',
+            backgroundSize: "1000px",
           }}
         ></div>
       </div>
@@ -123,7 +129,9 @@ const handleSubmit = async (e: React.FormEvent) => {
                 </div>
                 <div>
                   <p className="font-semibold">Service Areas</p>
-                  <p className="text-gray-300">Downtown, Midtown, Suburbs & Surrounding Areas</p>
+                  <p className="text-gray-300">
+                    Downtown, Midtown, Suburbs & Surrounding Areas
+                  </p>
                 </div>
               </div>
 
@@ -133,14 +141,20 @@ const handleSubmit = async (e: React.FormEvent) => {
                 </div>
                 <div>
                   <p className="font-semibold">Business Hours</p>
-                  <p className="text-gray-300">Mon-Fri: 7AM-7PM | Sat-Sun: 8AM-5PM</p>
-                  <p className="text-sky-300 text-sm">Emergency service available 24/7</p>
+                  <p className="text-gray-300">
+                    Mon-Fri: 7AM-7PM | Sat-Sun: 8AM-5PM
+                  </p>
+                  <p className="text-sky-300 text-sm">
+                    Emergency service available 24/7
+                  </p>
                 </div>
               </div>
             </div>
 
             <div>
-              <h4 className="text-lg font-semibold mb-4">Follow Us & Reviews</h4>
+              <h4 className="text-lg font-semibold mb-4">
+                Follow Us & Reviews
+              </h4>
               <div className="flex gap-4 mb-6">
                 <a
                   href="#"
@@ -161,7 +175,9 @@ const handleSubmit = async (e: React.FormEvent) => {
                   <Star className="w-5 h-5" />
                 </a>
               </div>
-              <p className="text-gray-400 text-sm">Check out our 5-star reviews on Google and Facebook!</p>
+              <p className="text-gray-400 text-sm">
+                Check out our 5-star reviews on Google and Facebook!
+              </p>
             </div>
           </div>
 
@@ -174,48 +190,64 @@ const handleSubmit = async (e: React.FormEvent) => {
                   <Input
                     placeholder="Your Name"
                     value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, name: e.target.value })
+                    }
                     className={`bg-white/10 border-white/20 text-white placeholder:text-gray-400 ${
                       errors.name ? "border-red-500" : ""
                     }`}
                   />
-                  {errors.name && <p className="text-red-400 text-sm mt-1">{errors.name}</p>}
+                  {errors.name && (
+                    <p className="text-red-400 text-sm mt-1">{errors.name}</p>
+                  )}
                 </div>
                 <div>
                   <Input
                     placeholder="Email Address"
                     type="email"
                     value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, email: e.target.value })
+                    }
                     className={`bg-white/10 border-white/20 text-white placeholder:text-gray-400 ${
                       errors.email ? "border-red-500" : ""
                     }`}
                   />
-                  {errors.email && <p className="text-red-400 text-sm mt-1">{errors.email}</p>}
+                  {errors.email && (
+                    <p className="text-red-400 text-sm mt-1">{errors.email}</p>
+                  )}
                 </div>
               </div>
-              
+
               <div>
                 <Input
                   placeholder="Phone Number"
                   type="tel"
                   value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, phone: e.target.value })
+                  }
                   className={`bg-white/10 border-white/20 text-white placeholder:text-gray-400 ${
                     errors.phone ? "border-red-500" : ""
                   }`}
                 />
-                {errors.phone && <p className="text-red-400 text-sm mt-1">{errors.phone}</p>}
+                {errors.phone && (
+                  <p className="text-red-400 text-sm mt-1">{errors.phone}</p>
+                )}
               </div>
-              
+
               <div>
-                <Select 
-                  onValueChange={(value) => setFormData({ ...formData, serviceInterest: value })}
+                <Select
+                  onValueChange={(value) =>
+                    setFormData({ ...formData, serviceInterest: value })
+                  }
                   value={formData.serviceInterest}
                 >
-                  <SelectTrigger className={`bg-white/10 border-white/20 text-white w-full ${
-                    errors.serviceInterest ? "border-red-500" : ""
-                  }`}>
+                  <SelectTrigger
+                    className={`bg-white/10 border-white/20 text-white w-full ${
+                      errors.serviceInterest ? "border-red-500" : ""
+                    }`}
+                  >
                     <SelectValue placeholder="Service Interest" />
                   </SelectTrigger>
                   <SelectContent>
@@ -226,16 +258,22 @@ const handleSubmit = async (e: React.FormEvent) => {
                     <SelectItem value="industrial">Industrial</SelectItem>
                   </SelectContent>
                 </Select>
-                {errors.serviceInterest && <p className="text-red-400 text-sm mt-1">{errors.serviceInterest}</p>}
+                {errors.serviceInterest && (
+                  <p className="text-red-400 text-sm mt-1">
+                    {errors.serviceInterest}
+                  </p>
+                )}
               </div>
-              
+
               <Textarea
                 placeholder="Tell us about your cleaning needs... (Optional)"
                 value={formData.message}
-                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, message: e.target.value })
+                }
                 className="bg-white/10 border-white/20 text-white placeholder:text-gray-400 min-h-32"
               />
-              
+
               <Button
                 type="submit"
                 disabled={isSubmitting}
@@ -248,9 +286,12 @@ const handleSubmit = async (e: React.FormEvent) => {
         </div>
 
         <div className="border-t border-gray-800 mt-16 pt-8 text-center">
-          <p className="text-gray-400">© 2024 Stunning LCS. All rights reserved. Licensed, Bonded & Insured.</p>
+          <p className="text-gray-400">
+            © 2024 Stunning LCS. All rights reserved. Licensed, Bonded &
+            Insured.
+          </p>
         </div>
       </div>
     </footer>
-  )
+  );
 }
