@@ -23,13 +23,33 @@ const montserrat = Montserrat({
   variable: "--font-montserrat",
 })
 
-export const metadata: Metadata = {
-  title: "Stunning LCS - Professional Cleaning Services | Licensed & Insured",
+export const metadata = {
+  title: "Stunning LCS - Professional Cleaning Services",
   description:
-    "Premium cleaning services for offices, medical facilities, retail spaces, and homes. Same-day availability, 100% satisfaction guaranteed. Licensed & insured professionals.",
-  keywords:
-    "cleaning services, professional cleaning, office cleaning, medical facility cleaning, residential cleaning, commercial cleaning",
-}
+    "Premium cleaning services for offices, medical facilities, retail spaces, and homes. Same-day availability, 100% satisfaction guarantee.",
+  openGraph: {
+    title: "Stunning LCS - Professional Cleaning Services",
+    description:
+      "Premium cleaning services for offices, medical facilities, retail spaces, and homes. Same-day availability, 100% satisfaction guarantee.",
+    url: "https://stunning-lcs.vercel.app",
+    siteName: "Stunning LCS",
+    images: [
+      {
+        url: "/logo.png", // your logo or preview image
+        width: 512,
+        height: 512,
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Stunning LCS - Professional Cleaning Services",
+    description:
+      "Premium cleaning services for offices, medical facilities, retail spaces, and homes. Same-day availability, 100% satisfaction guarantee.",
+    images: ["/logo.png"],
+  },
+};
 
 export default function RootLayout({
   children,
