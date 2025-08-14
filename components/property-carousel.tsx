@@ -10,7 +10,7 @@ export function PropertyCarousel() {
   const properties = [
     {
       image: "/modern-office-exterior.png",
-      title: "Corporate Office Complex",
+      title: "Corporate Office",
       location: "Downtown Business District",
       type: "Commercial",
     },
