@@ -35,7 +35,7 @@ export const metadata = {
     siteName: "Stunning LCS",
     images: [
       {
-        url: "/logo.png", // your logo or preview image
+        url: "https://stunning-lcs.vercel.app/logo.png", // Full URL
         width: 512,
         height: 512,
       },
@@ -47,7 +47,7 @@ export const metadata = {
     title: "Stunning LCS - Professional Cleaning Services",
     description:
       "Premium cleaning services for offices, medical facilities, retail spaces, and homes. Same-day availability, 100% satisfaction guarantee.",
-    images: ["/logo.png"],
+    images: ["https://stunning-lcs.vercel.app/logo.png"], // Full URL
   },
 };
 
